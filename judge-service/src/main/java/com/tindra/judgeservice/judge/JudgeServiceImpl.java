@@ -2,7 +2,7 @@ package com.tindra.judgeservice.judge;
 
 import cn.hutool.json.JSONUtil;
 
-import com.tindra.common.ErrorCode;
+import com.tindra.common.BusinessCode;
 import com.tindra.exception.BusinessException;
 import com.tindra.judgeservice.judge.sandbox.SandBox;
 import com.tindra.judgeservice.judge.sandbox.SandboxFactory;
@@ -39,16 +39,16 @@ public class JudgeServiceImpl implements JudgeService {
         // 获取题目的提交记录
         QuestionSubmit questionSubmit = questionFeign.getQuestionSubmitById(questionSubmitId);
         if (questionSubmit == null) {
-            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
+            throw new BusinessException(BusinessCode.NOT_FOUND_ERROR);
         }
         // 获取题目信息
         Question question = questionFeign.getQuestionById(questionSubmit.getQuestionId());
         if (question == null) {
-            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
+            throw new BusinessException(BusinessCode.NOT_FOUND_ERROR);
         }
         // 判断题目是否已经在判题中
         if (questionSubmit.getStatus() != QuestionSubmitStatusEnum.WAITING.getCode()) {
-            throw new BusinessException(ErrorCode.OPERATION_ERROR, "题目正在判题中");
+            throw new BusinessException(BusinessCode.OPERATION_ERROR, "题目正在判题中");
         }
         // 更改题目提交状态为判题中
         QuestionSubmit questionSubmitUpdate = new QuestionSubmit();
@@ -57,7 +57,7 @@ public class JudgeServiceImpl implements JudgeService {
         boolean update = questionFeign.updateQuestionSubmitById(questionSubmitUpdate);
         if (!update) {
             // 更改失败
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "更新题目提交状态失败");
+            throw new BusinessException(BusinessCode.SYSTEM_ERROR, "更新题目提交状态失败");
         }
         // 调用沙箱执行代码
         SandBox codeSandbox = SandboxFactory.sandBoxInstance(type);
@@ -76,7 +76,7 @@ public class JudgeServiceImpl implements JudgeService {
         ExecuteCodeResponse executeCodeResponse = codeSandbox.executeCode(executeCodeRequest);
 
         if (executeCodeResponse == null) {
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "执行代码失败");
+            throw new BusinessException(BusinessCode.SYSTEM_ERROR, "执行代码失败");
         }
         // 判断执行结果 通过策略模式实现
         List<String> outputList = executeCodeResponse.getOutput();
@@ -101,7 +101,7 @@ public class JudgeServiceImpl implements JudgeService {
         update = questionFeign.updateQuestionSubmitById(questionSubmitUpdate);
         if (!update) {
             // 更改失败
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "更新题目提交状态失败");
+            throw new BusinessException(BusinessCode.SYSTEM_ERROR, "更新题目提交状态失败");
         }
 
 

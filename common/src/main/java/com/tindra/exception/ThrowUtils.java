@@ -1,6 +1,6 @@
 package com.tindra.exception;
 
-import com.tindra.common.ErrorCode;
+import com.tindra.common.BusinessCode;
 
 /**
  * 抛异常工具类
@@ -24,20 +24,20 @@ public class ThrowUtils {
      * 条件成立则抛异常
      *
      * @param condition
-     * @param errorCode
+     * @param businessCode
      */
-    public static void throwIf(boolean condition, ErrorCode errorCode) {
-        throwIf(condition, new BusinessException(errorCode));
+    public static void throwIf(boolean condition, BusinessCode businessCode) {
+        throwIf(condition, new BusinessException(businessCode));
     }
 
     /**
      * 条件成立则抛异常
      *
      * @param condition
-     * @param errorCode
+     * @param businessCode
      * @param message
      */
-    public static void throwIf(boolean condition, ErrorCode errorCode, String message) {
-        throwIf(condition, new BusinessException(errorCode, message));
+    public static void throwIf(boolean condition, BusinessCode businessCode, String message) {
+        throwIf(condition, new BusinessException(businessCode, message));
     }
 }

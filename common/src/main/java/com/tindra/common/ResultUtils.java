@@ -20,11 +20,11 @@ public class ResultUtils {
     /**
      * 失败
      *
-     * @param errorCode
+     * @param businessCode
      * @return
      */
-    public static BaseResponse error(ErrorCode errorCode) {
-        return new BaseResponse<>(errorCode);
+    public static BaseResponse error(BusinessCode businessCode) {
+        return new BaseResponse<>(businessCode);
     }
 
     /**
@@ -41,10 +41,10 @@ public class ResultUtils {
     /**
      * 失败
      *
-     * @param errorCode
+     * @param businessCode
      * @return
      */
-    public static BaseResponse error(ErrorCode errorCode, String message) {
-        return new BaseResponse(errorCode.getCode(), null, message);
+    public static BaseResponse error(BusinessCode businessCode, String message) {
+        return new BaseResponse(businessCode.getCode(), null, message);
     }
 }

@@ -4,7 +4,7 @@ package com.tindra.questionservice.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.tindra.common.ErrorCode;
+import com.tindra.common.BusinessCode;
 import com.tindra.constant.CommonConstant;
 import com.tindra.exception.BusinessException;
 import com.tindra.model.dto.questionsubmit.QuestionSubmitQueryRequest;
@@ -62,7 +62,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         // 判断实体是否存在，根据类别获取实体
         Question question = questionService.getById(questionSubmitRequest.getQuestionId());
         if (question == null) {
-            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
+            throw new BusinessException(BusinessCode.NOT_FOUND_ERROR);
         }
         // 是否已登录
         long userId = loginUser.getId();
@@ -79,7 +79,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         QueryWrapper<QuestionSubmit> questionSubmitQueryWrapper = new QueryWrapper<>(questionSubmit);
         boolean flag = this.save(questionSubmit);
         if (!flag) {
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "提交题目插入失败");
+            throw new BusinessException(BusinessCode.SYSTEM_ERROR, "提交题目插入失败");
         }
         // 异步判题
         Long questionSubmitId = questionSubmit.getId();

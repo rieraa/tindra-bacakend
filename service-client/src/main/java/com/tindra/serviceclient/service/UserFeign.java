@@ -1,6 +1,6 @@
 package com.tindra.serviceclient.service;
 
-import com.tindra.common.ErrorCode;
+import com.tindra.common.BusinessCode;
 import com.tindra.exception.BusinessException;
 import com.tindra.model.entity.User;
 import com.tindra.model.enums.UserRoleEnum;
@@ -52,7 +52,7 @@ public interface UserFeign {
         Object userObj = request.getSession().getAttribute(USER_LOGIN_STATE);
         User currentUser = (User) userObj;
         if (currentUser == null || currentUser.getId() == null) {
-            throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
+            throw new BusinessException(BusinessCode.NOT_LOGIN_ERROR);
         }
         return currentUser;
     }

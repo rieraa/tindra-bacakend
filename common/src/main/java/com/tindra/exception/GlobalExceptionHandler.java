@@ -1,7 +1,7 @@
 package com.tindra.exception;
 
 import com.tindra.common.BaseResponse;
-import com.tindra.common.ErrorCode;
+import com.tindra.common.BusinessCode;
 import com.tindra.common.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,6 +25,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     public BaseResponse<?> runtimeExceptionHandler(RuntimeException e) {
         log.error("RuntimeException", e);
-        return ResultUtils.error(ErrorCode.SYSTEM_ERROR, "系统错误");
+        return ResultUtils.error(BusinessCode.SYSTEM_ERROR, "系统错误");
     }
 }

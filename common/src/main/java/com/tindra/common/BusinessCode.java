@@ -4,7 +4,7 @@ package com.tindra.common;
  * 自定义错误码
  *
  */
-public enum ErrorCode {
+public enum BusinessCode {
 
     SUCCESS(0, "ok"),
 
@@ -28,7 +28,7 @@ public enum ErrorCode {
      */
     private final String message;
 
-    ErrorCode(int code, String message) {
+    BusinessCode(int code, String message) {
         this.code = code;
         this.message = message;
     }

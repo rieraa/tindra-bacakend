@@ -1,6 +1,6 @@
 package com.tindra.exception;
 
-import com.tindra.common.ErrorCode;
+import com.tindra.common.BusinessCode;
 
 /**
  * 自定义异常类
@@ -18,14 +18,14 @@ public class BusinessException extends RuntimeException {
         this.code = code;
     }
 
-    public BusinessException(ErrorCode errorCode) {
-        super(errorCode.getMessage());
-        this.code = errorCode.getCode();
+    public BusinessException(BusinessCode businessCode) {
+        super(businessCode.getMessage());
+        this.code = businessCode.getCode();
     }
 
-    public BusinessException(ErrorCode errorCode, String message) {
+    public BusinessException(BusinessCode businessCode, String message) {
         super(message);
-        this.code = errorCode.getCode();
+        this.code = businessCode.getCode();
     }
 
     public int getCode() {

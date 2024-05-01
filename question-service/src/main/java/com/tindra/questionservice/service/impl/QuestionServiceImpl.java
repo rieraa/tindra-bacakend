@@ -4,7 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.tindra.common.ErrorCode;
+import com.tindra.common.BusinessCode;
 import com.tindra.constant.CommonConstant;
 import com.tindra.exception.BusinessException;
 import com.tindra.exception.ThrowUtils;
@@ -47,7 +47,7 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
     @Override
     public void validQuestion(Question question, boolean add) {
         if (question == null) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+            throw new BusinessException(BusinessCode.PARAMS_ERROR);
         }
         String title = question.getTitle();
         String content = question.getContent();
@@ -58,23 +58,23 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
 
         // 创建时，参数不能为空
         if (add) {
-            ThrowUtils.throwIf(StringUtils.isAnyBlank(title, content, tags), ErrorCode.PARAMS_ERROR);
+            ThrowUtils.throwIf(StringUtils.isAnyBlank(title, content, tags), BusinessCode.PARAMS_ERROR);
         }
         // 有参数则校验
         if (StringUtils.isNotBlank(title) && title.length() > 80) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR, "标题过长");
+            throw new BusinessException(BusinessCode.PARAMS_ERROR, "标题过长");
         }
         if (StringUtils.isNotBlank(content) && content.length() > 8192) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR, "内容过长");
+            throw new BusinessException(BusinessCode.PARAMS_ERROR, "内容过长");
         }
         if (StringUtils.isNotBlank(answer) && answer.length() > 8192) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR, "答案过长");
+            throw new BusinessException(BusinessCode.PARAMS_ERROR, "答案过长");
         }
         if (StringUtils.isNotBlank(judgeCase) && judgeCase.length() > 8192) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR, "答案过长");
+            throw new BusinessException(BusinessCode.PARAMS_ERROR, "答案过长");
         }
         if (StringUtils.isNotBlank(judgeConfig) && judgeConfig.length() > 8192) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR, "答案过长");
+            throw new BusinessException(BusinessCode.PARAMS_ERROR, "答案过长");
         }
     }
 
