@@ -15,4 +15,9 @@ public class JudgeCase {
      * 输出
      */
     private String output;
+
+    /**
+     * 是否可见
+     */
+    private Boolean visible;
 }
