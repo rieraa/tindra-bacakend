@@ -11,9 +11,9 @@ spring:
       matching-strategy: ant_path_matcher
   # session 配置
   session:
-    store-type: redis
-    # 30 天过期
+    store-type: redis    # 30 天过期
     timeout: 2592000
+
   # 数据库配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

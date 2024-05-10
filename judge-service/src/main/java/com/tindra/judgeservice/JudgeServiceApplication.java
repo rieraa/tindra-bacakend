@@ -12,7 +12,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
 @EnableDiscoveryClient
-//@ComponentScan("com.tindra.config")
+//@ComponentScan("com.tindra.config.exception")
 @EnableFeignClients(basePackages = {"com.tindra.serviceclient.service"})
 public class JudgeServiceApplication {
 

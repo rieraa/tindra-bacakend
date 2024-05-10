@@ -28,8 +28,11 @@ public class DefaultJudgeStrategy implements JudgeStrategy {
         JudgeInfo judgeInfo = judgeContext.getJudgeInfo();
         List<String> inputList = judgeContext.getInputList();
         List<String> outputList = judgeContext.getOutputList();
+
         List<JudgeCase> judgeCaseList = judgeContext.getJudgeCaseList();
         Question question = judgeContext.getQuestion();
+
+        judgeInfo.setOutputList(JSONUtil.toJsonStr(outputList));
 
         // 输出结果的数量与输入用例的数量不一致
         if (judgeContext.getOutputList().size() != judgeContext.getInputList().size()) {

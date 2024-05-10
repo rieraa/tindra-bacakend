@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
  * 判题信息（内存、时间、执行信息）
  */
@@ -26,4 +28,12 @@ public class JudgeInfo {
      * 执行消耗时间
      */
     private Long time;
+
+    /**
+     * 输出结果
+     */
+    private String outputList;
+
+
+
 }
